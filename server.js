@@ -9,13 +9,11 @@ const io = socketio(server)
 io.on('connection',(socket)=>{
     console.log('connected with socket id = ', socket.id)
 
-    socket.on('boom', ()=>{
-        console.log('boom received from ', socket.id)
+    socket.on('msg_send', (data) => {
+        io.emit('msg_rcvd',data) // emits data to all users
+        
+        // socket.broadcast.emit('msg_rcvd',data) // emits data to everyone (excluding you)
     })
-
-    setInterval(() => {
-        socket.emit('whizz')
-    }, 2000);
 })
 
 
