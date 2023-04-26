@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script defer src="script.js"></script>
     <title>Document</title>
@@ -11,9 +12,16 @@
 <body>
     <h1>Socket.io Sample</h1>
 
-    <input id="inpMsg">
-    <button id="btnSend">SEND</button>
+    <div id="loginBox">
+        <input id="inpUsername">
+        <button id="btnStart">START</button>
+    </div>
 
-    <ul id="ulMsgList"></ul>
+    <div id="chatBox">
+        <input id="inpToUser" placeholder="Send to everyone">
+        <input id="inpNewMsg" placeholder="New Message">
+        <button id="btnSendMsg">SEND</button>
+        <ul id="ulMsgs"></ul>
+    </div>
 </body>
 </html>
