@@ -19,6 +19,16 @@ io.on('connection',(socket)=>{
         socket.join(data.username)
         socket.emit('logged_in')
     })
+
+    // if username present sent to that user only else everyone
+    socket.on('msg_send',(data) => {
+        if(data.to){
+            io.to(data.to).emit('msg_rcvd',data)
+        }
+        else{
+            socket.broadcast.emit('msg_rcvd',data) // send data back
+        }
+    })
 })
 
 

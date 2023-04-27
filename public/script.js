@@ -20,3 +20,8 @@ $('#btnSendMsg').click(() => {
         msg: $('#inpNewMsg').val()
     })
 })
+
+// construct message for the user
+socket.on('msg_rcvd',(data) => {
+    $('#ulMsgs').append($('<li>').text(data.msg))
+})
