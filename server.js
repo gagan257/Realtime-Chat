@@ -24,8 +24,7 @@ io.on('connection',(socket)=>{
     socket.on('msg_send',(data) => {
         if(data.to){
             io.to(data.to).emit('msg_rcvd',data)
-        }
-        else{
+        } else{
             socket.broadcast.emit('msg_rcvd',data) // send data back
         }
     })
