@@ -6,18 +6,27 @@ const socketio = require('socket.io')
 const server = http.createServer(app)
 const io = socketio(server)
 
+let users = { // sample used as database
+    'arnav':'agag123'
+}
+
 io.on('connection',(socket)=>{
     console.log('connected with socket id = ', socket.id)
 
-    // socket.on('msg_send', (data) => {
-    //     io.emit('msg_rcvd',data) // emits data to all users
-        
-    //     // socket.broadcast.emit('msg_rcvd',data) // emits data to everyone (excluding you)
-    // })
-
-    socket.on('login' , (data) => {
-        socket.join(data.username)
-        socket.emit('logged_in')
+    socket.on('login' , (data) => { // on receiving login event
+        if(users[data.username]){ // id exists
+            if(users[data.username] == data.password){ // id & pass found
+                socket.join(data.username)
+                socket.emit('logged_in')
+            } else{ // id correct but pass wrong
+                socket.emit('login_failed')
+            }
+        } else{ // id not found (create new id & pass & login)
+            users[data.username] = data.password
+            socket.join(data.username)
+            socket.emit('logged_in')
+        }
+        console.log(users) // for our reff. how it works
     })
 
     // if username present sent to that user only else everyone
