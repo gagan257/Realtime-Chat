@@ -30,5 +30,7 @@ $('#btnSendMsg').click(() => {
 
 // construct message for the user
 socket.on('msg_rcvd',(data) => {
-    $('#ulMsgs').append($('<li>').text(data.msg))
+    $('#ulMsgs').append($('<li>').text(
+        `[${data.from}] : ${data.msg}` // receiving data from server and display senders name
+    ))
 })
