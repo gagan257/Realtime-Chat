@@ -1,0 +1,8 @@
+
+## express -> app + http -> server + socket.io -> server with socket.io script
+
+## for applying http logic: use app
+   for applying socket.io logic: use io.on()
+
+## io.emit() -> For Everyone
+   socket.emit() -> For any socket connection
